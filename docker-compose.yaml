@@ -9,6 +9,15 @@ services:
     ports:
       - 8080:8080
 
+  fastapi-container:
+    build: ./fastapi
+    container_name: fastapi-container
+    restart: always
+    environment:
+      - APP_NAME=MyFastAPI_APP
+    ports:
+      - 8000:8000
+
   postgresql-container:
     image: postgres:14
     container_name: postgresql-container

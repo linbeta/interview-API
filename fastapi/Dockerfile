@@ -1,9 +1,9 @@
 FROM alpine:latest
 RUN apk update
 RUN apk add py-pip
-RUN apk add --no-cache python3-dev build-base linux-headers pcre-dev 
+RUN apk add --no-cache python3-dev 
 RUN pip install --upgrade pip
 WORKDIR /app
 COPY . /app
 RUN pip --no-cache-dir install -r requirements.txt
-CMD ["uwsgi", "app.ini"]
+CMD ["uvicorn", "fastapi_app.main:app", "--host", "0.0.0.0", "--port", "8000"]
